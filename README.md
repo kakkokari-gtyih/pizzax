@@ -100,6 +100,42 @@ function increment() {
 
 WIP
 
+### Svelte
+
+
+Svelteで使う場合は、インポート先を `pizzax/svelte` に変更します。
+
+```ts
+import { Store } from 'pizzax/svelte';
+
+export const mainStore = new Store('storeKey', {
+    // ...
+});
+```
+
+Svelteの場合は、通常の `state` だけでなく、 `writableState` 経由で、`svelte/store` の `writable` と同じように状態を取得・更新できます。
+
+```svelte
+<script lang="ts">
+    import { mainStore } from './store';
+</script>
+
+<p>こんにちは、 {$mainStore.writableState.name} さん！</p>
+```
+
+```svelte
+<script lang="ts">
+    import { mainStore } from './store';
+
+    function increment() {
+        mainStore.writableState.count.update(n => n + 1);
+    }
+</script>
+
+<p>{$mainStore.writableState.count}</p>
+<button on:click={increment}>Increment</button>
+```
+
 ## ライセンス
 
 MITになる予定
