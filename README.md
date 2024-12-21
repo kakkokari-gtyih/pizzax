@@ -7,6 +7,8 @@
 
 ## インストール
 
+※まだありません
+
 ```bash
 npm install pizzax
 ```
